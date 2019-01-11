@@ -53,19 +53,19 @@ auto BMFontParser::Parse(STRING FileName)->bool
 		tempAttr = tempAttr->Next();
 		m_FontData.Info.Size = tempAttr->UnsignedValue();
 		tempAttr = tempAttr->Next();
-		m_FontData.Info.bBold = tempAttr->BoolValue();
+		m_FontData.Info.IsBold = tempAttr->BoolValue();
 		tempAttr = tempAttr->Next();
-		m_FontData.Info.bItalic = tempAttr->BoolValue();
+		m_FontData.Info.IsItalic = tempAttr->BoolValue();
 		tempAttr = tempAttr->Next();
 		m_FontData.Info.Charset = tempAttr->Value();
 		tempAttr = tempAttr->Next();
-		m_FontData.Info.bUnicode = tempAttr->BoolValue();
+		m_FontData.Info.IsUnicode = tempAttr->BoolValue();
 		tempAttr = tempAttr->Next();
 		m_FontData.Info.StretchH = tempAttr->UnsignedValue();
 		tempAttr = tempAttr->Next();
-		m_FontData.Info.bSmooth = tempAttr->BoolValue();
+		m_FontData.Info.IsSmooth = tempAttr->BoolValue();
 		tempAttr = tempAttr->Next();
-		m_FontData.Info.bAA = tempAttr->BoolValue();
+		m_FontData.Info.AA = tempAttr->UnsignedValue();
 		tempAttr = tempAttr->Next();
 		
 		m_FontData.Info.Padding.Up = ParseComma(tempAttr->Value(), 0);
@@ -78,24 +78,24 @@ auto BMFontParser::Parse(STRING FileName)->bool
 		m_FontData.Info.Spacing.Vert = ParseComma(tempAttr->Value(), 1);
 		tempAttr = tempAttr->Next();
 
-		m_FontData.Info.bOutline = tempAttr->BoolValue();
+		m_FontData.Info.bOutline = tempAttr->UnsignedValue();
 
 		/**
 		* Parse element <common>
 		*/
 		tempElement = tempElementRoot->FirstChildElement("common");
 		tempAttr = tempElement->FirstAttribute();
-		m_FontData.Common.LineHeight = tempAttr->IntValue();
+		m_FontData.Common.LineHeight = tempAttr->UnsignedValue();
 		tempAttr = tempAttr->Next();
 		m_FontData.Common.Base = tempAttr->IntValue();
 		tempAttr = tempAttr->Next();
-		m_FontData.Common.ScaleW = tempAttr->IntValue();
+		m_FontData.Common.ScaleW = tempAttr->UnsignedValue();
 		tempAttr = tempAttr->Next();
-		m_FontData.Common.ScaleH = tempAttr->IntValue();
+		m_FontData.Common.ScaleH = tempAttr->UnsignedValue();
 		tempAttr = tempAttr->Next();
-		m_FontData.Common.Pages = tempAttr->IntValue();
+		m_FontData.Common.Pages = tempAttr->UnsignedValue();
 		tempAttr = tempAttr->Next();
-		m_FontData.Common.bPacked = tempAttr->BoolValue();
+		m_FontData.Common.IsPacked = tempAttr->BoolValue();
 		tempAttr = tempAttr->Next();
 		m_FontData.Common.AlphaChnl = tempAttr->IntValue();
 		tempAttr = tempAttr->Next();
@@ -115,7 +115,7 @@ auto BMFontParser::Parse(STRING FileName)->bool
 		{
 			BMFont::BMPage tempPage;
 			tempAttr = tempElement->FirstAttribute();
-			tempPage.ID = tempAttr->IntValue();
+			tempPage.ID = tempAttr->UnsignedValue();
 			tempPage.File = tempAttr->Next()->Value();
 			m_FontData.Pages.push_back(tempPage);
 
@@ -133,26 +133,25 @@ auto BMFontParser::Parse(STRING FileName)->bool
 		{
 			BMFont::BMChar tempChar;
 			tempAttr = tempElement->FirstAttribute();
-			tempChar.ID = tempAttr->IntValue();
+			tempChar.ID = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
-			tempChar.X = tempAttr->IntValue();
+			tempChar.X = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
-			tempChar.Y = tempAttr->IntValue();
+			tempChar.Y = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
-			tempChar.Width = tempAttr->IntValue();
+			tempChar.Width = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
-			tempChar.Height = tempAttr->IntValue();
+			tempChar.Height = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
 			tempChar.XOffset = tempAttr->IntValue();
 			tempAttr = tempAttr->Next();
 			tempChar.YOffset = tempAttr->IntValue();
 			tempAttr = tempAttr->Next();
-			tempChar.XAdvance = tempAttr->IntValue();
+			tempChar.XAdvance = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
-			tempChar.Page = tempAttr->IntValue();
+			tempChar.Page = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
-			tempChar.Chnl = tempAttr->IntValue();
-			tempAttr = tempAttr->Next();
+			tempChar.Chnl = tempAttr->UnsignedValue();
 			m_FontData.Chars.push_back(tempChar);
 
 			tempElement = tempElement->NextSiblingElement();
@@ -169,9 +168,9 @@ auto BMFontParser::Parse(STRING FileName)->bool
 		{
 			BMFont::BMKerning tempKerning;
 			tempAttr = tempElement->FirstAttribute();
-			tempKerning.First = tempAttr->IntValue();
+			tempKerning.First = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
-			tempKerning.Second = tempAttr->IntValue();
+			tempKerning.Second = tempAttr->UnsignedValue();
 			tempAttr = tempAttr->Next();
 			tempKerning.Amount = tempAttr->IntValue();
 			m_FontData.Kernings.push_back(tempKerning);
