@@ -120,13 +120,13 @@ namespace BMF
 		static BMFont m_FontData;
 
 	protected:
-		inline UINT ParseComma(STRING Data, UINT ID);
+		virtual auto ParseComma(STRING Data, UINT ID)->UINT const;
 
 	public:
 		BMFontParser() {};
 		virtual ~BMFontParser() {};
 
-		auto Parse(STRING FileName)->bool;
-		auto GetFontData()->const BMFont* const;
+		virtual auto Parse(STRING FileName)->bool;
+		virtual auto GetFontData()->const BMFont* const;
 	};
 };

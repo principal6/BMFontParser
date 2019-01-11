@@ -6,7 +6,7 @@ using namespace BMF;
 // Static member variable declaration
 BMFontParser::BMFont BMFontParser::m_FontData;
 
-inline UINT BMFontParser::ParseComma(STRING Data, UINT ID)
+auto BMFontParser::ParseComma(STRING Data, UINT ID)->UINT const
 {
 	UINT Result = 0;
 	STRING tempString = Data;
@@ -32,7 +32,7 @@ inline UINT BMFontParser::ParseComma(STRING Data, UINT ID)
 	return Result;
 }
 
-auto BMFontParser::Parse(STRING FileName) -> bool
+auto BMFontParser::Parse(STRING FileName)->bool
 {
 	//@warning: Without "tinyxml2::" here, XMLDocument can be ambiguous because of <msxml.h> in Windows Kits
 	tinyxml2::XMLDocument tempXMLDoc;
