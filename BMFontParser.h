@@ -126,7 +126,7 @@ namespace BMF
 			VECTOR<BMKerning> Kernings;
 		};
 
-	private:
+	protected:
 		static BMFont m_FontData;
 
 	protected:
