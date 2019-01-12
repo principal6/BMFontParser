@@ -15,7 +15,11 @@
 	template <typename T>
 	using UNIQUE_PTR = std::unique_ptr<T>;
 
+	template <typename T>
+	using SHARED_PTR = std::shared_ptr<T>;
+
 	#define MAKE_UNIQUE(T) std::make_unique<T>
+	#define MAKE_SHARED(T) std::make_shared<T>
 #endif
 
 namespace BMF
